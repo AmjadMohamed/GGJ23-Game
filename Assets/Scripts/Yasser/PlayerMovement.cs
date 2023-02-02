@@ -8,20 +8,16 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontalMove = 0f;
     private float verticalMove = 0f;
-
-    private void Awake()
-    {
-        
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool movementDisabled = false;
 
     // Update is called once per frame
     void Update()
+    {
+        if (!movementDisabled)
+            Movement();
+    }
+
+    private void Movement()
     {
         horizontalMove = Input.GetAxis("Horizontal") * speed;
         verticalMove = Input.GetAxis("Vertical") * speed;
@@ -30,8 +26,13 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(verticalMove * Time.deltaTime * Vector2.up);
     }
 
-    private void FixedUpdate()
+    public void DisableMovement()
     {
-        
+        movementDisabled = true;
+    }
+
+    public void EnableMovement()
+    {
+        movementDisabled = false;
     }
 }
