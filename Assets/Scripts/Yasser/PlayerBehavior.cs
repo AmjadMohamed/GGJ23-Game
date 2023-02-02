@@ -5,15 +5,5 @@ using TMPro;
 
 public class PlayerBehavior : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI inspectText;
-
-    public void EnableInspectText()
-    {
-        inspectText.gameObject.SetActive(true);
-    }
-
-    public void DisableInspectText()
-    {
-        inspectText.gameObject.SetActive(false);
-    }
+    
 }
