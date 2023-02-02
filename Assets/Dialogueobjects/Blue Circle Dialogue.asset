@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4187c425cc99cea4aa7af1e9215ccbc3, type: 3}
-  m_Name: New Dialogue Object
+  m_Name: Blue Circle Dialogue
   m_EditorClassIdentifier: 
-  dialogue: []
+  dialogue:
+  - It's just a blue circle...

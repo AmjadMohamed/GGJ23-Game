@@ -5,13 +5,16 @@ using TMPro;
 
 public class Item : MonoBehaviour, Interactable
 {
-    [SerializeField] Sprite interactableSprite;
-    [SerializeField] float distanceRange;
-    [SerializeField] private TextMeshProUGUI puzzlePanel;
+    [SerializeField] private Sprite interactableSprite;
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private PlayerBehavior player;
+    [SerializeField] private float distanceRange;
 
+    [SerializeField] private TextMeshProUGUI puzzlePanel;
 
+    [SerializeField] private DialogueObject dialogue;
+    [SerializeField] private DialogueUI dialogueManager;
+
+    
     private SpriteRenderer spriteRenderer;
     private Sprite regularSprite;
     private bool isPuzzle = false;
@@ -33,14 +36,14 @@ public class Item : MonoBehaviour, Interactable
 
         if (Input.GetKeyDown(KeyCode.F) && isPuzzle)
         {
+            Debug.Log("f pressed");
             Inspect();
-        }
-
+        }      
     }
 
     private void CheckDistance()
     {
-        float distance2Player = Vector2.Distance(this.transform.position, player.transform.position);
+        float distance2Player = Vector2.Distance(this.transform.position, playerMovement.transform.position);
 
         if (distance2Player <= distanceRange)
         {
@@ -61,19 +64,14 @@ public class Item : MonoBehaviour, Interactable
 
     public void Inspect()
     {
-        player.EnableInspectText();
-        StartCoroutine(DisableInspectText());
+        Debug.Log("In inspect");
+        dialogueManager.ShowDialogue(dialogue);
+        playerMovement.DisableMovement();
     }
 
     public void Interact()
     {
         puzzlePanel.gameObject.transform.parent.gameObject.SetActive(true);
         playerMovement.DisableMovement();
-    }
-
-    IEnumerator DisableInspectText()
-    {
-        yield return new WaitForSeconds(3);
-        player.DisableInspectText();
     }
 }
