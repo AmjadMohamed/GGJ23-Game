@@ -5,16 +5,34 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] Animator anim;
 
     private float horizontalMove = 0f;
     private float verticalMove = 0f;
     private bool movementDisabled = false;
+    private SpriteRenderer playerSpriteRenderer;
+
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+        playerSpriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (!movementDisabled)
             Movement();
+
+        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        {
+            anim.SetBool("IsWalking", false);
+        }
+        else
+        {
+            anim.SetBool("IsWalking", true);
+        }
     }
 
     private void Movement()
@@ -24,17 +42,20 @@ public class PlayerMovement : MonoBehaviour
 
         transform.Translate(horizontalMove * Time.deltaTime * Vector2.right);
         transform.Translate(verticalMove * Time.deltaTime * Vector2.up);
+
+        if (Input.GetAxis("Horizontal") >= 0)
+            playerSpriteRenderer.flipX = true;
+        else
+            playerSpriteRenderer.flipX = false;
     }
 
     public void DisableMovement()
     {
-        movementDisabled = true;
+        movementDisabled = false;
     }
 
     public void EnableMovement()
     {
-        movementDisabled = false;
+        movementDisabled = true;
     }
-
-    // still buggy and needs improvements
 }
