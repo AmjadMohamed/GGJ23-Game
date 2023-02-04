@@ -7,7 +7,7 @@ public class RoomTransitionManager : MonoBehaviour
 {
     [SerializeField] List<Transform> RoomCams;
     [SerializeField] GameObject PhotoAlbum;
-
+    [SerializeField] GameObject Player;
     public void MoveToRoom(int RoomNumber)
     {
         for (int i = 0; i < RoomCams.Count; i++)
@@ -16,5 +16,19 @@ public class RoomTransitionManager : MonoBehaviour
         }
         PhotoAlbum.SetActive(false);
         RoomCams[RoomNumber - 1].gameObject.SetActive(true);
+        StartCoroutine("MovePlayerWithCamera");
+    }
+
+    IEnumerator MovePlayerWithCamera()
+    {
+        Player.GetComponent<PlayerMovement>().enabled = false;
+        Player.GetComponent<CircleCollider2D>().enabled = false;
+        Player.GetComponent<BoxCollider2D>().enabled = false;
+        Player.transform.SetParent(Camera.main.transform);
+        yield return new WaitForSeconds(Camera.main.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time);
+        Player.GetComponent<PlayerMovement>().enabled = true;
+        Player.GetComponent<CircleCollider2D>().enabled = true;
+        Player.GetComponent<BoxCollider2D>().enabled = true;
+        Player.transform.SetParent(null);
     }
 }

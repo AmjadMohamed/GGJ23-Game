@@ -1570,6 +1570,7 @@ MonoBehaviour:
   - {fileID: 1362400147}
   - {fileID: 1863224562}
   PhotoAlbum: {fileID: 1717096322}
+  Player: {fileID: 1819092094}
 --- !u!1 &782605380
 GameObject:
   m_ObjectHideFlags: 0
@@ -4132,7 +4133,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819092094}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -7.54, y: -2.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
