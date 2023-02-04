@@ -12,7 +12,11 @@ public class BookPuzzle : MonoBehaviour
     [SerializeField] List<GameObject> btns= new List<GameObject>();
     [SerializeField] int[] rightOrder = {1,2,3,4,5};
     bool solved = false;
-    
+
+    void onWin()
+    {
+        //call here the dialogue function and the inventory function
+    }
     public void SelectedBook(GameObject btn)
     {
         if (!solved)
@@ -23,7 +27,7 @@ public class BookPuzzle : MonoBehaviour
                 selectedBook1 = btn;
                 Debug.Log("btn1 Selected");
             }
-             else if (selectedBook1 == btn)
+            else if (selectedBook1 == btn)
             {
                 return;
             }
@@ -75,10 +79,12 @@ public class BookPuzzle : MonoBehaviour
         }
         Debug.Log("you won");
         solved = true;
-        onWon();
+        onWin();
     }
-    void onWon()
+    public void onCloseingThePuzzle()
     {
-
+        selectedBook1 = null;
+        selectedBook2 = null;
     }
+    
 }
