@@ -9,12 +9,12 @@ public class ChangeColor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer.color = Color.blue;   
+        spriteRenderer = GetComponent<SpriteRenderer>();
+         
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void ChangeColorBlue()
     {
-        
+        spriteRenderer.color = Color.blue;
     }
 }
