@@ -16,6 +16,7 @@ public class BookPuzzle : MonoBehaviour
     void onWin()
     {
         //call here the dialogue function and the inventory function
+
     }
     public void SelectedBook(GameObject btn)
     {
