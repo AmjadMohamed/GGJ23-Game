@@ -35,4 +35,6 @@ public class PlayerMovement : MonoBehaviour
     {
         movementDisabled = false;
     }
+
+    // still buggy and needs improvements
 }
