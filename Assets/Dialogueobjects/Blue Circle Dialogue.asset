@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: Blue Circle Dialogue
   m_EditorClassIdentifier: 
   dialogue:
+<<<<<<< Updated upstream:Assets/Dialogueobjects/Blue Circle Dialogue.asset
   - It's just a blue circle...
+=======
+  - SHIT SHIT SHIT
+  - Fuck Yeser
+  - Fuck Yaser * 6969
+>>>>>>> Stashed changes:Assets/Dialogueobjects/New Dialogue Object.asset
