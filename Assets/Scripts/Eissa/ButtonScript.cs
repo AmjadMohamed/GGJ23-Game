@@ -8,7 +8,6 @@ public class ButtonScript : MonoBehaviour
     [SerializeField] GameObject panel;
    public void switchThePanal()
     {
-
         panel.SetActive(activeState);
         activeState = !activeState;
     }

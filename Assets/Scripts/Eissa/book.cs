@@ -5,5 +5,5 @@ using UnityEngine;
 public class book : MonoBehaviour
 {
     public int id;
-    public int place;
+   
 }
