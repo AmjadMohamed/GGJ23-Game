@@ -8,15 +8,32 @@ public class RoomTransitionManager : MonoBehaviour
     [SerializeField] List<Transform> RoomCams;
     [SerializeField] GameObject PhotoAlbum;
     [SerializeField] GameObject Player;
+
+
+    private int GetActiveCam()
+    {
+        for (int i = 0; i < RoomCams.Count; i++)
+        {
+            if (RoomCams[i].gameObject.activeSelf)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
     public void MoveToRoom(int RoomNumber)
     {
+        if (RoomNumber - 1 != GetActiveCam())
+            StartCoroutine("MovePlayerWithCamera");
+
         for (int i = 0; i < RoomCams.Count; i++)
         {
             RoomCams[i].gameObject.SetActive(false);
         }
         PhotoAlbum.SetActive(false);
         RoomCams[RoomNumber - 1].gameObject.SetActive(true);
-        StartCoroutine("MovePlayerWithCamera");
     }
 
     IEnumerator MovePlayerWithCamera()
