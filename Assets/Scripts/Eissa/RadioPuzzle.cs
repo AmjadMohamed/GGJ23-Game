@@ -14,6 +14,7 @@ public class RadioPuzzle : MonoBehaviour
     [SerializeField] Image currentimg;
     [SerializeField] Sprite Pushedbtn;
     [SerializeField] Sprite notPushedbtn;
+    [SerializeField] Sprite solvedSprite;
     //[SerializeField] AudioClip staticSound,theSong;
     float slowlyIncreasedValue = 0.01f;
     bool PlayMusic = false;
@@ -79,19 +80,31 @@ public class RadioPuzzle : MonoBehaviour
                 checkSloution();
             }
         }
+
+        if (slider.value > 195 && slider.value < 230)
+        {
+            isSolved = true;
+            print("radio solved");
+            isSolved = true;
+            playMuisc();
+            onWin();
+            slider.interactable = false;
+            currentimg.sprite = solvedSprite;
+            GameManager.Instance.FinishRadioPuzzle();
+        }
     }
     public void increaseFrequency()
     {
         if (slider.value <= 308)
         {
-             slider.value += slowlyIncreasedValue/1.7f;
+            slider.value += slowlyIncreasedValue / 1.7f;
         }
     }
     public void decreaseFrequency()
     {
         if (slider.value >= 87.5)
         {
-            slider.value -= slowlyIncreasedValue/1.7f;
+            slider.value -= slowlyIncreasedValue / 1.7f;
         }
     }
     public void increaseFrequencyWithBtn()
@@ -110,14 +123,15 @@ public class RadioPuzzle : MonoBehaviour
     }
     public void checkSloution()
     {
-        
+
         if (200.01f <= slider.value && slider.value <= 201.15)
         {
             Debug.Log("you won");
-            isSolved= true;
+            isSolved = true;
             playMuisc();
             onWin();
             slider.interactable = false;
+            currentimg.sprite = solvedSprite;
         }
     }
     public void PlayMusicbtn()

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-[System.Serializable] public class BoolGameEvent : UnityEvent<bool>{}
+[System.Serializable] public class BoolGameEvent : UnityEvent<bool> { }
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     // Pause variables
     public BoolGameEvent PauseGameEvent;
     private bool isGamePaused = false;
-    
+
     // Start game variables
     public BoolGameEvent StartGameEvent;
     private bool isGameStarted = false;                 // becomes true when the player starts the game
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleGamePause();
-        }        
+        }
     }
 
     public void ToggleGamePause()
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
         finishedRadioPuzzle = true;
 
         InventoryManager.Instance.Inventory_OldClockHand.SetActive(true);
-        InventoryManager.Instance.Inventory_ModernClockHand.SetActive(true);
+        InventoryManager.Instance.Inventory_SemiModernClockHand.SetActive(true);
     }
 
     public void FinishClockPuzzle()
