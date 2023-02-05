@@ -72,7 +72,6 @@ public class Item : MonoBehaviour, Interactable
     public void Interact()
     {
         puzzlePanel.SetActive(true);
-        ActivatePhotoAlbumTutorial.Instance.InteractsCnt++;
         playerMovement.DisableMovement();
     }
 }
