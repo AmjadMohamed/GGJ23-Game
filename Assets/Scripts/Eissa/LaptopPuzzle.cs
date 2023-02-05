@@ -4,15 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Unity.Burst.CompilerServices;
 
 public class LaptopPuzzle : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] TMP_InputField inputField;
-    [SerializeField] TMP_Text text;
+    [SerializeField] TMP_Text feedback;
+    [SerializeField] GameObject hintText;
     string enteredPassword;
-    string correctPassword = "hello";
+    string correctPassword = "forgetmenot";
     [SerializeField] PlayerMovement playerRef;
+    string concatString = "";
+    string[] splitedStr;
+
+
+    int hintCount = 0;
 
     private void onWin()
     {
@@ -31,16 +38,49 @@ public class LaptopPuzzle : MonoBehaviour
     {
         enteredPassword = inputField.text ;
         enteredPassword.ToLower();
-        correctPassword.Trim();
-        if(enteredPassword == correctPassword)
+        enteredPassword.Trim();
+        if (enteredPassword.Contains('-'))
+        {
+            splitedStr = enteredPassword.Split('-');
+
+            for (int i = 0; i < splitedStr.Length; i++)
+            {
+                concatString += splitedStr[i];
+            }
+        }
+        if (concatString.Contains(' '))
+        {
+            splitedStr = concatString.Split(' ');
+            concatString = "";
+            for (int i = 0; i < splitedStr.Length; i++)
+            {
+                concatString += splitedStr[i];
+            }
+        }
+        else if (enteredPassword.Contains(' '))
+        {
+           splitedStr = enteredPassword.Split(' ');
+           
+            for (int i = 0; i < splitedStr.Length; i++)
+            {
+                concatString += splitedStr[i];
+            }
+        }
+        Debug.Log(concatString);
+        if (concatString == correctPassword || enteredPassword == correctPassword)
         {
             Debug.Log("you won");
-            text.text = "Correct Password";
+            feedback.text = "Correct Password";
             onWin();
         }
         else
         {
-            text.text = "Wrong Password, please try agian";
+            feedback.text = "Wrong Password, please try agian";
+            hintCount++;
+            if(hintCount > 0)
+            {
+                hintText.SetActive(true);
+            }
         }
     }
 
