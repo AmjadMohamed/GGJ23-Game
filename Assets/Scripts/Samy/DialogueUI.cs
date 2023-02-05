@@ -6,7 +6,6 @@ public class DialogueUI : MonoBehaviour
 {
     [SerializeField] PlayerMovement player;
     [SerializeField] TMP_Text text_panel;
-    [SerializeField] DialogueObject testDialogue;
     [SerializeField] GameObject dialougebox;
 
     private TypeWriterEffect typeWriterEffect;
