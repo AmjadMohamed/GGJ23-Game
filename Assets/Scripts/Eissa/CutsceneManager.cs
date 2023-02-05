@@ -29,7 +29,16 @@ public class CutsceneManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         cams[4].SetActive(true);
         yield return new WaitForSeconds(2.1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        
+        if (GameManager.Instance == null)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            GameManager.Instance.StartGame();
+        }
+
         //yield return new WaitForSeconds(4);
         //cams[1].SetActive(true);
         //dialogueManager.ShowDialogue(dialogue2);

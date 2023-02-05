@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameUI : MonoBehaviour
 {
@@ -25,9 +26,19 @@ public class GameUI : MonoBehaviour
         mainMenuUI.SetActive(!isGameStarted);
     }
 
+    public void OnStartCutscene(bool isCutSceneStarted)
+    {
+        mainMenuUI.SetActive(!isCutSceneStarted);
+    }
+
     public void StartGame()
     {
         GameManager.Instance.StartGame();
+    }
+
+    public void StartCutScene()
+    {
+        GameManager.Instance.StartCutScene();
     }
 
     public void TogglePauseGame()
@@ -50,5 +61,10 @@ public class GameUI : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void ActivatePhotoAlbumTutorial()
+    {
+        GameManager.Instance.ActivatePhotoTutorial();
     }
 }
