@@ -29,6 +29,8 @@ public class ScaleOnPosition : MonoBehaviour
         positionLerpValue = Mathf.Clamp01(positionLerpValue);
 
         // sets the actual scale of the player to the lerped value
-        transform.localScale = Vector3.Lerp(maxScale, minScale, positionLerpValue);
+        Vector3 targetScale = Vector3.Lerp(maxScale, minScale, positionLerpValue);
+
+        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * 5.0f);
     }
 }
