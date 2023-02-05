@@ -6,16 +6,16 @@ using UnityEngine;
 public class ScaleOnPosition : MonoBehaviour
 {
     [Header("Min Max Positions")]
-    // Minimum vector corrosponding to the minimum scale.
+    // Minimum vector corrosponding to the minimum position.
     [SerializeField] Vector3 minPosition = new Vector3(0, -1.8f, 0);
 
-    // Maximum vector corrosponding to the maximum scale.
+    // Maximum vector corrosponding to the maximum postition.
     [SerializeField] Vector3 maxPosition = new Vector3(0, -0.5f, 0);
 
     [Header("Min Max Scales")]
-    [SerializeField] Vector3 minScale = Vector3.one;
+    [SerializeField] Vector3 maxScale = Vector3.one;
 
-    [SerializeField] Vector3 maxScale = new Vector3(0.5f, 0.5f, 0.5f);
+    [SerializeField] Vector3 minScale = new Vector3(0.5f, 0.5f, 0.5f);
 
 
     private void Update()
@@ -29,6 +29,6 @@ public class ScaleOnPosition : MonoBehaviour
         positionLerpValue = Mathf.Clamp01(positionLerpValue);
 
         // sets the actual scale of the player to the lerped value
-        transform.localScale = Vector3.Lerp(minScale, maxScale, positionLerpValue);
+        transform.localScale = Vector3.Lerp(maxScale, minScale, positionLerpValue);
     }
 }
