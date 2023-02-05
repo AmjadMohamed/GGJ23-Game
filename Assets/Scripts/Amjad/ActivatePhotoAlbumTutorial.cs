@@ -8,8 +8,8 @@ public class ActivatePhotoAlbumTutorial : MonoBehaviour
     // can get the number of interactables with the event system if we gonna go with that solution 
     private static ActivatePhotoAlbumTutorial instance;
 
-    [HideInInspector] public int InteractsCnt;
-    [SerializeField] int NumberOfInteractsToActivateAlbum;
+    //[HideInInspector] public int InteractsCnt;
+    //[SerializeField] int NumberOfInteractsToActivateAlbum;
     [SerializeField] Button PhotoAlbum;
     [SerializeField] GameObject TutorialPanel;
     [SerializeField] GameObject Inventory;
@@ -25,14 +25,11 @@ public class ActivatePhotoAlbumTutorial : MonoBehaviour
             instance = this;
     }
 
-    private void Update()
+    public void ActivateInventoryTutorial()
     {
-        if (InteractsCnt == NumberOfInteractsToActivateAlbum && !IsTutorialShown)
-        {
-            TutorialPanel.SetActive(true);
-            PhotoAlbum.interactable = true;
-            IsTutorialShown = true;
-            Inventory.SetActive(true);
-        }
+        TutorialPanel.SetActive(true);
+        PhotoAlbum.interactable = true;
+        IsTutorialShown = true;
+        Inventory.SetActive(true);
     }
 }
