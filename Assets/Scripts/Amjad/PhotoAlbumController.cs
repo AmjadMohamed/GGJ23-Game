@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PhotoAlbumController : MonoBehaviour
 {
     [SerializeField] List<GameObject> RoomPics;
-    int cnt = 0;
+    int cnt = 2;
 
     private void Start()
     {

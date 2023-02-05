@@ -1,16 +1,54 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RadioPuzzle : MonoBehaviour
 {
-    [SerializeField] Button up;
-    [SerializeField] Button down;
-    [SerializeField] PlayerMovement playerRef;
+    [SerializeField] Button increase;
+    [SerializeField] Button Decrease;
     [SerializeField] Slider slider;
+    [SerializeField] PlayerMovement playerRef;
+    [SerializeField] Image currentimg;
+    [SerializeField] Sprite Pushedbtn;
+    [SerializeField] Sprite notPushedbtn;
+    //[SerializeField] AudioClip staticSound,theSong;
     float slowlyIncreasedValue = 0.01f;
+    bool PlayMusic = false;
     bool isSolved = false;
+    void playMuisc()
+    {
+        if (PlayMusic)
+        {
+            if (isSolved)
+            {
+                // call the audio manager here to play the song 
+            }
+            else
+            {
+                // call the audio manager here to play the static noise
+            }
+        }
+    }
+    private void onWin()
+    {
+        //call here the dialogue function and the inventory function
+    }
+    private void OnEnable()
+    {
+        playerRef.DisableMovement();
+    }
+    private void OnDisable()
+    {
+        playerRef.EnableMovement();
+    }
+    //public void onCloseingThePuzzle()
+    //{
+    //    playerRef.EnableMovement();
+    //}
+
     private void Update()
     {
         if (!isSolved)
@@ -45,14 +83,14 @@ public class RadioPuzzle : MonoBehaviour
     {
         if (slider.value <= 308)
         {
-             slider.value += slowlyIncreasedValue/2;
+             slider.value += slowlyIncreasedValue/1.7f;
         }
     }
     public void decreaseFrequency()
     {
         if (slider.value >= 87.5)
         {
-            slider.value -= slowlyIncreasedValue/2;
+            slider.value -= slowlyIncreasedValue/1.7f;
         }
     }
     public void increaseFrequencyWithBtn()
@@ -76,6 +114,22 @@ public class RadioPuzzle : MonoBehaviour
         {
             Debug.Log("you won");
             isSolved= true;
+            playMuisc();
+            onWin();
+            slider.interactable = false;
         }
+    }
+    public void PlayMusicbtn()
+    {
+        if (PlayMusic)
+        {
+            currentimg.sprite = Pushedbtn;
+        }
+        else
+        {
+            currentimg.sprite = notPushedbtn;
+        }
+        PlayMusic = !PlayMusic;
+        playMuisc();
     }
 }

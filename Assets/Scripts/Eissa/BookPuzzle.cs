@@ -11,12 +11,28 @@ public class BookPuzzle : MonoBehaviour
     GameObject selectedBook2 = null;
     [SerializeField] List<GameObject> btns= new List<GameObject>();
     [SerializeField] int[] rightOrder = {1,2,3,4,5};
+    [SerializeField] PlayerMovement playerRef;
     bool solved = false;
-
     void onWin()
     {
         //call here the dialogue function and the inventory function
+
     }
+
+    private void OnEnable()
+    {
+        playerRef.DisableMovement();
+    }
+    private void OnDisable()
+    {
+        selectedBook1 = null;
+        selectedBook2 = null;
+        playerRef.EnableMovement();
+    }
+    //public void onCloseingThePuzzle()
+    //{
+       
+    //}
     public void SelectedBook(GameObject btn)
     {
         if (!solved)
@@ -26,6 +42,7 @@ public class BookPuzzle : MonoBehaviour
             {
                 selectedBook1 = btn;
                 Debug.Log("btn1 Selected");
+                // call audio manager here to play (selecting book sfx)
             }
             else if (selectedBook1 == btn)
             {
@@ -36,6 +53,7 @@ public class BookPuzzle : MonoBehaviour
                 selectedBook2 = btn;
                 Debug.Log("btn2 Selected");
                 switchBooks();
+                // call audio manager here to play (switching book sfx)
             }
 
         }
@@ -80,11 +98,6 @@ public class BookPuzzle : MonoBehaviour
         Debug.Log("you won");
         solved = true;
         onWin();
-    }
-    public void onCloseingThePuzzle()
-    {
-        selectedBook1 = null;
-        selectedBook2 = null;
     }
     
 }

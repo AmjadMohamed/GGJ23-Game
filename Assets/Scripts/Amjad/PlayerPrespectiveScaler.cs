@@ -19,7 +19,8 @@ public class PlayerPrespectiveScaler : MonoBehaviour
         if (VerticalMov > 0 && transform.localScale.y < 3)
         {
             this.transform.localScale = new Vector3(transform.localScale.x + VerticalMov * ScaleModifier, transform.localScale.y + VerticalMov * ScaleModifier, transform.localScale.z + VerticalMov * ScaleModifier);
-        }else if(VerticalMov < 0 &&transform.localScale.y > 1.2)
+        }
+        else if (VerticalMov < 0 && transform.localScale.y > 1.2)
         {
             this.transform.localScale = new Vector3(transform.localScale.x + VerticalMov * ScaleModifier, transform.localScale.y + VerticalMov * ScaleModifier, transform.localScale.z + VerticalMov * ScaleModifier);
         }

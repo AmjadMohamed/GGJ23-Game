@@ -9,12 +9,12 @@ public class Item : MonoBehaviour, Interactable
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private float distanceRange;
 
-    [SerializeField] private TextMeshProUGUI puzzlePanel;
+    [SerializeField] private GameObject puzzlePanel;
 
     [SerializeField] private DialogueObject dialogue;
     [SerializeField] private DialogueUI dialogueManager;
 
-    
+
     private SpriteRenderer spriteRenderer;
     private Sprite regularSprite;
     private bool isPuzzle = false;
@@ -38,7 +38,7 @@ public class Item : MonoBehaviour, Interactable
         {
             Debug.Log("f pressed");
             Inspect();
-        }      
+        }
     }
 
     private void CheckDistance()
@@ -71,7 +71,7 @@ public class Item : MonoBehaviour, Interactable
 
     public void Interact()
     {
-        puzzlePanel.gameObject.transform.parent.gameObject.SetActive(true);
+        puzzlePanel.SetActive(true);
         playerMovement.DisableMovement();
     }
 }

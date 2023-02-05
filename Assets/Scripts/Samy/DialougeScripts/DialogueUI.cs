@@ -11,7 +11,7 @@ public class DialogueUI : MonoBehaviour
 
     private TypeWriterEffect typeWriterEffect;
 
-    private void Start()
+    private void Awake()
     {
         typeWriterEffect= GetComponent<TypeWriterEffect>();
     }
