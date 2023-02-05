@@ -14,8 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D playerRigidbody2D;
 
-
-    private void Start()
+    private void Awake()
     {
         anim = GetComponent<Animator>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
@@ -54,10 +53,20 @@ public class PlayerMovement : MonoBehaviour
             verticalMove
             );
 
-        if (Input.GetAxis("Horizontal") >= 0)
+        //if (Input.GetAxis("Horizontal") >= 0)
+        //    playerSpriteRenderer.flipX = true;
+        //else
+        //    playerSpriteRenderer.flipX = false;
+
+        if (Input.GetKey(KeyCode.D) && Input.GetAxis("Horizontal") >= 0)
+        {
             playerSpriteRenderer.flipX = true;
-        else
+        }
+        
+        if (Input.GetKey(KeyCode.A) && Input.GetAxis("Horizontal") <= 0)
+        {
             playerSpriteRenderer.flipX = false;
+        }
     }
 
     public void DisableMovement()

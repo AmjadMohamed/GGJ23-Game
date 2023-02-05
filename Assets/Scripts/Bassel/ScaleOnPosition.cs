@@ -5,6 +5,8 @@ using UnityEngine;
 // Add this component to your player and the parallax effect will appear :D
 public class ScaleOnPosition : MonoBehaviour
 {
+    [SerializeField] float smoothValue = 0f;
+
     [Header("Min Max Positions")]
     // Minimum vector corrosponding to the minimum position.
     [SerializeField] Vector3 minPosition = new Vector3(0, -1.8f, 0);
@@ -22,7 +24,7 @@ public class ScaleOnPosition : MonoBehaviour
     {
         // Where is the position in y between the min and max
         // and yes the 2 vectors (min/max) could be replaced by 2 floats, yet more understandable like that
-        float positionLerpValue = Mathf.InverseLerp(minPosition.y, maxPosition.y, transform.position.y);
+        float positionLerpValue = Mathf.InverseLerp(minPosition.y, maxPosition.y, transform.position.y * smoothValue);
 
         // if below min or over max, get the lerp value between 0-1
         // to prevent that scale gets out our desired min max
