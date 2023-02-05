@@ -11,6 +11,9 @@ public class RadioPuzzle : MonoBehaviour
     [SerializeField] Button Decrease;
     [SerializeField] Slider slider;
     [SerializeField] PlayerMovement playerRef;
+    [SerializeField] Image currentimg;
+    [SerializeField] Sprite Pushedbtn;
+    [SerializeField] Sprite notPushedbtn;
     //[SerializeField] AudioClip staticSound,theSong;
     float slowlyIncreasedValue = 0.01f;
     bool PlayMusic = false;
@@ -113,10 +116,19 @@ public class RadioPuzzle : MonoBehaviour
             isSolved= true;
             playMuisc();
             onWin();
+            slider.interactable = false;
         }
     }
     public void PlayMusicbtn()
     {
+        if (PlayMusic)
+        {
+            currentimg.sprite = Pushedbtn;
+        }
+        else
+        {
+            currentimg.sprite = notPushedbtn;
+        }
         PlayMusic = !PlayMusic;
         playMuisc();
     }
