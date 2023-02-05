@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
     public void BackToStartUpScene()
     {
         isGameStarted = false;
-        StartGameEvent.Invoke(false);
+        //StartGameEvent.Invoke(false);
 
         SceneManager.LoadScene(StartUpLevelName);
     }

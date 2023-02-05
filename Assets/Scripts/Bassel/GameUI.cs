@@ -8,6 +8,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] GameObject pauseGameUI;
     [SerializeField] GameObject pauseGameButton;
     [SerializeField] GameObject mainMenuUI;
+    [SerializeField] GameObject controlTutorialUI;
 
     private void Awake()
     {
@@ -22,8 +23,10 @@ public class GameUI : MonoBehaviour
 
     public void OnStartGame(bool isGameStarted)
     {
-        pauseGameButton.SetActive(isGameStarted);
-        mainMenuUI.SetActive(!isGameStarted);
+        controlTutorialUI.SetActive(isGameStarted);
+
+        /*pauseGameButton.SetActive(isGameStarted);
+        mainMenuUI.SetActive(!isGameStarted);*/
     }
 
     public void OnStartCutscene(bool isCutSceneStarted)
@@ -33,7 +36,9 @@ public class GameUI : MonoBehaviour
 
     public void StartGame()
     {
-        GameManager.Instance.StartGame();
+        //GameManager.Instance.StartGame();
+        pauseGameButton.SetActive(true);
+        mainMenuUI.SetActive(false);
     }
 
     public void StartCutScene()

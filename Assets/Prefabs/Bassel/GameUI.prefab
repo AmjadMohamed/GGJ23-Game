@@ -741,7 +741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7644001504449338383
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1139,7 +1139,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2361481979731608724}
         m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
-        m_MethodName: TogglePauseGame
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1437,7 +1437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1876025115098182346
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1923,6 +1923,7 @@ MonoBehaviour:
   pauseGameUI: {fileID: 394344443172008583}
   pauseGameButton: {fileID: 960413682097209603}
   mainMenuUI: {fileID: 6372732729207443578}
+  controlTutorialUI: {fileID: 990133371010024334}
 --- !u!1 &7862937735224606813
 GameObject:
   m_ObjectHideFlags: 0
