@@ -25,11 +25,13 @@ public class RadioPuzzle : MonoBehaviour
         {
             if (isSolved)
             {
-                // call the audio manager here to play the song 
+                AudioManager_.instance.playMusic("Ansak - Umm Kulthum");
+                AudioManager_.instance.stopSFX("radio_static_5s");
             }
             else
             {
-                // call the audio manager here to play the static noise
+                AudioManager_.instance.playSFX("radio_static_5s");
+                AudioManager_.instance.loopSFX("radio_static_5s");
             }
         }
     }
@@ -55,6 +57,8 @@ public class RadioPuzzle : MonoBehaviour
     {
         if (!isSolved)
         {
+            AudioManager_.instance.playSFX("radio_static_5s");
+            AudioManager_.instance.loopSFX("radio_static_5s");
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 increaseFrequency();
@@ -65,7 +69,7 @@ public class RadioPuzzle : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.RightArrow))
             {
                 slowlyIncreasedValue = 0.01f;
-                checkSloution();
+                //checkSloution();
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
@@ -77,7 +81,7 @@ public class RadioPuzzle : MonoBehaviour
             {
 
                 slowlyIncreasedValue = 0.01f;
-                checkSloution();
+                //checkSloution();
             }
         }
 
@@ -121,19 +125,19 @@ public class RadioPuzzle : MonoBehaviour
             slider.value -= .5f;
         }
     }
-    public void checkSloution()
-    {
+    //public void checkSloution()
+    //{
 
-        if (200.01f <= slider.value && slider.value <= 201.15)
-        {
-            Debug.Log("you won");
-            isSolved = true;
-            playMuisc();
-            onWin();
-            slider.interactable = false;
-            currentimg.sprite = solvedSprite;
-        }
-    }
+    //    if (195 <= slider.value && slider.value <= 230)
+    //    {
+    //        Debug.Log("you won");
+    //        isSolved = true;
+    //        playMuisc();
+    //        onWin();
+    //        slider.interactable = false;
+    //        currentimg.sprite = solvedSprite;
+    //    }
+    //}
     public void PlayMusicbtn()
     {
         if (PlayMusic)
@@ -145,6 +149,10 @@ public class RadioPuzzle : MonoBehaviour
             currentimg.sprite = notPushedbtn;
         }
         PlayMusic = !PlayMusic;
-        playMuisc();
+        if (isSolved)
+        {
+            playMuisc();
+
+        }
     }
 }
