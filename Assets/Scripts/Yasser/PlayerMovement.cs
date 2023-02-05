@@ -19,11 +19,22 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         playerRigidbody2D = GetComponent<Rigidbody2D>();
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PauseGameEvent.AddListener(OnPauseGame);
+            GameManager.Instance.EnablePlayerEvent.AddListener(OnPauseGame);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (movementDisabled)
+        {
+            return;
+        }
+           
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
         {
             anim.SetBool("IsWalking", false);
@@ -45,18 +56,10 @@ public class PlayerMovement : MonoBehaviour
         horizontalMove = Input.GetAxis("Horizontal") * speed;
         verticalMove = Input.GetAxis("Vertical") * speed;
 
-        //transform.Translate(horizontalMove * Time.deltaTime * Vector2.right);
-        //transform.Translate(verticalMove * Time.deltaTime * Vector2.up);
-
         playerRigidbody2D.velocity = new Vector3(
             horizontalMove,
             verticalMove
             );
-
-        //if (Input.GetAxis("Horizontal") >= 0)
-        //    playerSpriteRenderer.flipX = true;
-        //else
-        //    playerSpriteRenderer.flipX = false;
 
         if (Input.GetKey(KeyCode.D) && Input.GetAxis("Horizontal") >= 0)
         {
@@ -77,5 +80,29 @@ public class PlayerMovement : MonoBehaviour
     public void EnableMovement()
     {
         movementDisabled = true;
+    }
+
+    public void OnPauseGame(bool isGamePause)
+    {
+        if (!isGamePause)
+        {
+            DisableMovement();
+            anim.StopPlayback();
+        }
+
+        if (isGamePause)
+        {
+            EnableMovement();
+            anim.StartPlayback();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PauseGameEvent.RemoveListener(OnPauseGame);
+            GameManager.Instance.EnablePlayerEvent.RemoveListener(OnPauseGame);
+        }
     }
 }

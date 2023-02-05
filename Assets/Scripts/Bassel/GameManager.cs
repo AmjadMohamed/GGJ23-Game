@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
     public BoolGameEvent StartGameEvent;
     private bool isGameStarted = false;                 // becomes true when the player starts the game
 
+    public BoolGameEvent StartCutSceneEvent;
+
+
+    public BoolGameEvent EnablePlayerEvent;
+
 
     [Header("UI related variables")]
     // UI variables
@@ -28,7 +33,14 @@ public class GameManager : MonoBehaviour
     [Header("Management related variables")]
     [SerializeField] string MainLevelName = "Game Scene";
     [SerializeField] string StartUpLevelName = "Start up Scene";
+    [SerializeField] string CutsceneLevelName = "Cutscene";
 
+    [Header("Gameplay related variables")]
+    [SerializeField] bool finishedRadioPuzzle = false;
+    [SerializeField] bool finishedClockPuzzle = false;
+    [SerializeField] bool finishedBookPuzzle = false;
+    [SerializeField] bool finishedLaptopPuzzle = false;
+    public UnityEvent ClockPuzzleFinished;
 
     private void Awake()
     {
@@ -52,6 +64,7 @@ public class GameManager : MonoBehaviour
         {
             PauseGameEvent.AddListener(gameUI.OnPauseGame);
             StartGameEvent.AddListener(gameUI.OnStartGame);
+            StartCutSceneEvent.AddListener(gameUI.OnStartCutscene);
         }
     }
 
@@ -74,6 +87,12 @@ public class GameManager : MonoBehaviour
         PauseGameEvent.Invoke(isGamePaused);
     }
 
+    public void StartCutScene()
+    {
+        SceneManager.LoadScene(CutsceneLevelName);
+        StartCutSceneEvent.Invoke(true);
+    }
+
     public void StartGame()
     {
         isGameStarted = true;
@@ -93,5 +112,34 @@ public class GameManager : MonoBehaviour
         StartGameEvent.Invoke(false);
 
         SceneManager.LoadScene(StartUpLevelName);
+    }
+
+    public void SetPlayerEnabled(bool isPlayerEnabled)
+    {
+        EnablePlayerEvent.Invoke(isPlayerEnabled);
+    }
+
+    public void ActivatePhotoTutorial()
+    {
+        ActivatePhotoAlbumTutorial.Instance.ActivateInventoryTutorial();
+    }
+
+    public void FinishRadioPuzzle()
+    {
+        finishedRadioPuzzle = true;
+
+        InventoryManager.Instance.Inventory_OldClockHand.SetActive(true);
+        InventoryManager.Instance.Inventory_ModernClockHand.SetActive(true);
+    }
+
+    public void FinishClockPuzzle()
+    {
+        finishedClockPuzzle = true;
+        ClockPuzzleFinished.Invoke();
+
+        /*
+         * awake of clock
+        GameManager.Instance.ClockPuzzleFinished.AddListener( functionToStart );
+         */
     }
 }

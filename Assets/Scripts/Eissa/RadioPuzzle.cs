@@ -35,14 +35,15 @@ public class RadioPuzzle : MonoBehaviour
     private void onWin()
     {
         //call here the dialogue function and the inventory function
+        GameManager.Instance.FinishRadioPuzzle();
     }
     private void OnEnable()
     {
-        playerRef.DisableMovement();
+        GameManager.Instance.SetPlayerEnabled(false);
     }
     private void OnDisable()
     {
-        playerRef.EnableMovement();
+        GameManager.Instance.SetPlayerEnabled(true);
     }
     //public void onCloseingThePuzzle()
     //{
