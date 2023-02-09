@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: Cutscene 2
   m_EditorClassIdentifier: 
   dialogue:
-  - Donec id augue mauris. Quisque bibendum hendrerit mollis. Nulla tincidunt pharetra
-    eros, in ullamcorper turpis malesuada vitae. Morbi ut diam ac enim elementum
-    mollis. Nulla quis ex a elit iaculis aliquam. Etiam volutpat imperdiet nunc quis
-    posuere. Mauris vel suscipit neque
+  - '*ruffle* *ruffle* *ruffle*'
+  - ........

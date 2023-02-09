@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Cutscene 3
   m_EditorClassIdentifier: 
   dialogue:
-  - Aenean laoreet auctor erat ac malesuada. Pellentesque mauris lacus, ultricies
-    ac erat in, commodo efficitur velit. Nam a pulvinar ex. Duis iaculis dolor sit
-    amet dolor imperdiet, vel semper eros vulputate. Aenean scelerisque leo fermentum,
-    scelerisque erat a, efficitur justo. Donec aliquam quis lorem ac molestie. In
-    in feugiat orci. Maecenas semper nisl mauris, ac convallis libero suscipit sed.
+  - Pictures...?
+  - Whose?
+  - I feel like I have seen this before... Is this the same room?

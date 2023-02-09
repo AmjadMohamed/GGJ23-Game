@@ -13,6 +13,13 @@ public class BookPuzzle : MonoBehaviour
     [SerializeField] int[] rightOrder = {1,2,3,4,5};
     [SerializeField] PlayerMovement playerRef;
     bool solved = false;
+    private void Awake()
+    {
+        if (playerRef == null)
+        {
+             playerRef=FindObjectOfType<PlayerMovement>();
+        }
+    }
     void onWin()
     {
         //call here the dialogue function and the inventory function

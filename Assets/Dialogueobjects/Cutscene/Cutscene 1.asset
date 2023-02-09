@@ -13,11 +13,4 @@ MonoBehaviour:
   m_Name: Cutscene 1
   m_EditorClassIdentifier: 
   dialogue:
-  - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis egestas urna non
-    iaculis rhoncus. Nullam orci quam, vehicula a porttitor vitae, porta non tortor.
-    Curabitur vitae volutpat quam, ultricies imperdiet orci. Donec venenatis ipsum
-    odio, sed gravida quam aliquam a. Vestibulum lectus dolor, laoreet in finibus
-    ac, bibendum ultrices nisl. Proin rhoncus, purus eu blandit porta, augue est
-    scelerisque nisi, et auctor nibh diam sit amet turpis. In accumsan magna ac ultricies
-    fermentum. Maecenas tempor eleifend massa et sodales. Quisque quis nisl tincidunt,
-    viverra lectus ac, vulputate nunc.
+  - A box? What could be inside, I wonder?
