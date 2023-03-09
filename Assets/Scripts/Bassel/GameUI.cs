@@ -37,7 +37,7 @@ public class GameUI : MonoBehaviour
     public void StartGame()
     {
         //GameManager.Instance.StartGame();
-        pauseGameButton.SetActive(true);
+        //pauseGameButton.SetActive(true);
         mainMenuUI.SetActive(false);
     }
 

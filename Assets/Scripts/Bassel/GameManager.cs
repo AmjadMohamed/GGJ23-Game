@@ -128,8 +128,9 @@ public class GameManager : MonoBehaviour
     {
         finishedRadioPuzzle = true;
 
-        InventoryManager.Instance.Inventory_OldClockHand.SetActive(true);
-        InventoryManager.Instance.Inventory_SemiModernClockHand.SetActive(true);
+        InventoryManager.Instance.Inventory_Seed.SetActive(true);
+        //InventoryManager.Instance.Inventory_OldClockHand.SetActive(true);
+        //InventoryManager.Instance.Inventory_SemiModernClockHand.SetActive(true);
     }
 
     public void FinishClockPuzzle()

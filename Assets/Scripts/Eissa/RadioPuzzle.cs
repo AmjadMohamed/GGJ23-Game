@@ -15,18 +15,19 @@ public class RadioPuzzle : MonoBehaviour
     [SerializeField] Sprite Pushedbtn;
     [SerializeField] Sprite notPushedbtn;
     [SerializeField] Sprite solvedSprite;
+    [SerializeField] Button RadioOnOffButton;
     //[SerializeField] AudioClip staticSound,theSong;
     float slowlyIncreasedValue = 0.01f;
     bool PlayMusic = false;
     bool isSolved = false;
-    void playMuisc()
+    void playMusicFunc()
     {
         if (PlayMusic)
         {
             if (isSolved)
             {
-                AudioManager_.instance.playMusic("Ansak - Umm Kulthum");
                 AudioManager_.instance.stopSFX("radio_static_5s");
+                AudioManager_.instance.playMusic("Ansak - Umm Kulthum");
             }
             else
             {
@@ -38,15 +39,24 @@ public class RadioPuzzle : MonoBehaviour
     private void onWin()
     {
         //call here the dialogue function and the inventory function
+        isSolved = true;
+        print("radio solved");
+        slider.interactable = false;
+        RadioOnOffButton.interactable = false;
+        currentimg.sprite = solvedSprite;
+        //AudioManager_.instance.sfxSource.gameObject.SetActive(false);
         GameManager.Instance.FinishRadioPuzzle();
     }
     private void OnEnable()
     {
         GameManager.Instance.SetPlayerEnabled(false);
+        playerRef.DisableMovement();
+        //AudioManager_.instance.stopSFX("radio_static_5s");
     }
     private void OnDisable()
     {
         GameManager.Instance.SetPlayerEnabled(true);
+        playerRef.EnableMovement();
     }
     //public void onCloseingThePuzzle()
     //{
@@ -55,10 +65,12 @@ public class RadioPuzzle : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("can play music: " + PlayMusic);
+        Debug.Log("is solved: " + isSolved);
         if (!isSolved)
         {
-            AudioManager_.instance.playSFX("radio_static_5s");
-            AudioManager_.instance.loopSFX("radio_static_5s");
+            //AudioManager_.instance.playSFX("radio_static_5s");
+            //AudioManager_.instance.loopSFX("radio_static_5s");
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 increaseFrequency();
@@ -85,16 +97,13 @@ public class RadioPuzzle : MonoBehaviour
             }
         }
 
-        if (slider.value > 195 && slider.value < 230)
+        if (PlayMusic)
         {
-            isSolved = true;
-            print("radio solved");
-            isSolved = true;
-            playMuisc();
-            onWin();
-            slider.interactable = false;
-            currentimg.sprite = solvedSprite;
-            GameManager.Instance.FinishRadioPuzzle();
+            if (slider.value > 195 && slider.value < 230)
+            {
+                playMusicFunc();
+                onWin();
+            }
         }
     }
     public void increaseFrequency()
@@ -132,7 +141,7 @@ public class RadioPuzzle : MonoBehaviour
     //    {
     //        Debug.Log("you won");
     //        isSolved = true;
-    //        playMuisc();
+    //        playMusicFunc();
     //        onWin();
     //        slider.interactable = false;
     //        currentimg.sprite = solvedSprite;
@@ -140,18 +149,19 @@ public class RadioPuzzle : MonoBehaviour
     //}
     public void PlayMusicbtn()
     {
+        PlayMusic = !PlayMusic;
         if (PlayMusic)
         {
             currentimg.sprite = Pushedbtn;
+            slider.interactable = true;
+            playMusicFunc();
         }
         else
         {
             currentimg.sprite = notPushedbtn;
-        }
-        PlayMusic = !PlayMusic;
-        if (isSolved)
-        {
-            playMuisc();
+            slider.interactable = false;
+            AudioManager_.instance.musicSource.Stop();
+            AudioManager_.instance.sfxSource.Stop();
 
         }
     }

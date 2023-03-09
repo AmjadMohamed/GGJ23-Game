@@ -74,12 +74,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void DisableMovement()
     {
-        movementDisabled = false;
+        movementDisabled = true;
     }
 
     public void EnableMovement()
     {
-        movementDisabled = true;
+        movementDisabled = false;
     }
 
     public void OnPauseGame(bool isGamePause)
@@ -87,13 +87,13 @@ public class PlayerMovement : MonoBehaviour
         if (!isGamePause)
         {
             DisableMovement();
-            anim.StopPlayback();
+            //anim.StopPlayback();
         }
 
         if (isGamePause)
         {
             EnableMovement();
-            anim.StartPlayback();
+            //anim.StartPlayback();
         }
     }
 
